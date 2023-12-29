@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Helper</title>
+    <style>
+        .center {
+            margin: auto;
+            width: 40%;
+            border: 2px solid black;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h3 {
+            display: inline;
+        }
+        .btn {
+            margin: 0 20px;
+        }
+        input {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h1>Tax Helper</h1>
+        <h2 id="tests"></h2>
+        <form name="calc">
+            Gross: <input type="number" id="num">
+            <br><br>
+                       
+            <div>
+                NET: <h3 id="net"></h3><br><br>
+                GST: <h3 id="gst"></h3><br><br>
+                PST: <h3 id="pst"></h3><br><br>
+                Total: <h3 id="total"></h3>
+            </div>
+            
+            <br><br>
+            <input class="btn" type="button" value="GST" onclick="getGST()">
+            <input class="btn" type="button" value="PST" onclick="getPST()">
+        </form>
+    </div>
+
+    <script>
+
+        function getGST() {
+            var num, net, gst, total;
+            num = Number(document.getElementById("num").value);
+            net = num/1.05;
+            gst = (net.toFixed(2)) * 0.05;
+            
+            total = net + gst;
+
+            document.getElementById("net").innerHTML = net.toFixed(2);
+            document.getElementById("gst").innerHTML = gst.toFixed(2);
+            document.getElementById("pst").innerHTML = null;
+            document.getElementById("total").innerHTML = total.toFixed(2);
+
+        }
+        function getPST() {
+            var num, net, gst, pst, total, tax;
+            num = Number(document.getElementById("num").value);
+
+            net =  num/1.12;
+            gst= net.toFixed(2) * 0.05;
+            pst = num - net.toFixed(2) - gst.toFixed(2);
+            total = Math.round( net*100)/100 + Math.round( gst*100)/100 + Math.round( pst*100)/100;
+
+            document.getElementById("net").innerHTML = net.toFixed(2);
+            document.getElementById("gst").innerHTML = gst.toFixed(2);
+            document.getElementById("pst").innerHTML = pst.toFixed(2);
+            document.getElementById("total").innerHTML = total.toFixed(2);
+
+        }
+
+        
+    </script>
+</body>
+</html>
