@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet" />
+    <title>CanTax Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>CanTax Calculator</h2>
+        <label for="calculationMethod">Calculation Method:</label>
+        <select id="calculationMethod">
+            <option value="net">Net Amount</option>
+            <option value="gross">Gross Amount</option>
+        </select>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount">
+        <label for="gst">GST:</label>
+        <input type="number" id="gst">
+        <label for="pst">PST:</label>
+        <input type="number" id="pst">
+        <label for="hst">HST:</label>
+        <input type="number" id="hst">
+        <button onclick="calculateTax()">Calculate</button>
+        <div class="result">
+            <p>Net Amount: <span id="netResult"></span></p>
+            <p>GST: <span id="gstResult"></span></p>
+            <p>PST: <span id="pstResult"></span></p>
+            <p>HST: <span id="hstResult"></span></p>
+            <p>Total Amount: <span id="totalResult"></span></p>
+        </div>
+    </div>
+
+    <div class="past-calculations" id="pastCalculations"></div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
