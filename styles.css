@@ -52,3 +52,16 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px; /* Adjust max-width as needed */
+    margin-top: 10px;
+}
+
+.btn-container button {
+    flex: 1;
+    margin: 0 5px;
+}

@@ -24,7 +24,11 @@
         <input type="number" id="pst">
         <label for="hst">HST:</label>
         <input type="number" id="hst">
-        <button onclick="calculateTax()">Calculate</button>
+        <div class="btn-container">
+            <button onclick="calculateTax()">Calculate</button>
+            <button onclick="calculateGST()">GST Only</button>
+            <button onclick="calculateGSTandPST()">GST and PST</button>
+        </div>
         <div class="result">
             <p>Net Amount: <span id="netResult"></span></p>
             <p>GST: <span id="gstResult"></span></p>

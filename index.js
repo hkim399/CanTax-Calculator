@@ -55,3 +55,73 @@ var pastCalculations = [];
             pastCalculationsContainer.appendChild(calculationElement);
         });
     }
+
+    function calculateGST() {
+        var amount = parseFloat(document.getElementById('amount').value);
+        var calculationMethod = document.getElementById('calculationMethod').value;
+        var gst = parseFloat(document.getElementById('gst').value) || 0;
+        var pst = "0.00", hst = "0.00";
+
+        var netAmount;
+        if (calculationMethod === 'net') {
+            netAmount = amount;
+        } else if (calculationMethod === 'gross') {
+            netAmount = amount / (1 + (gst / 100));
+        }
+
+        var gstResult = netAmount * (gst / 100);
+        var totalResult = netAmount + gstResult;
+    
+        document.getElementById('netResult').textContent = netAmount.toFixed(2);
+        document.getElementById('gstResult').textContent = gstResult.toFixed(2);
+        document.getElementById('pstResult').textContent = pst;
+        document.getElementById('hstResult').textContent = hst;
+        document.getElementById('totalResult').textContent = totalResult.toFixed(2);
+
+        var calculation = {
+            calculationMethod: calculationMethod,
+            netAmount: netAmount.toFixed(2),
+            gstResult: gstResult.toFixed(2),
+            pstResult: pst,
+            hstResult: hst,
+            totalResult: totalResult.toFixed(2)
+        };
+        pastCalculations.unshift(calculation);
+        updatePastCalculations();
+    }
+    
+    function calculateGSTandPST() {
+        var amount = parseFloat(document.getElementById('amount').value);
+        var calculationMethod = document.getElementById('calculationMethod').value;
+        var gst = parseFloat(document.getElementById('gst').value) || 0;
+        var pst = parseFloat(document.getElementById('pst').value) || 0;
+        var hst = "0.00";
+
+        var netAmount;
+        if (calculationMethod === 'net') {
+            netAmount = amount;
+        } else if (calculationMethod === 'gross') {
+            netAmount = amount / (1 + (gst / 100));
+        }
+
+        var gstResult = netAmount * (gst / 100);
+        var pstResult = netAmount * (pst / 100);
+        var totalResult = netAmount + gstResult + pstResult;
+    
+        document.getElementById('netResult').textContent = netAmount.toFixed(2);
+        document.getElementById('gstResult').textContent = gstResult.toFixed(2);
+        document.getElementById('pstResult').textContent = pstResult.toFixed(2);
+        document.getElementById('hstResult').textContent = hst;
+        document.getElementById('totalResult').textContent = totalResult.toFixed(2);
+
+        var calculation = {
+            calculationMethod: calculationMethod,
+            netAmount: netAmount.toFixed(2),
+            gstResult: gstResult.toFixed(2),
+            pstResult: pstResult.toFixed(2),
+            hstResult: hst,
+            totalResult: totalResult.toFixed(2)
+        };
+        pastCalculations.unshift(calculation);
+        updatePastCalculations();
+    }
